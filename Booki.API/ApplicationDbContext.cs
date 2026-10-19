@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Booki.API.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Booki.API
 {
@@ -8,6 +9,6 @@ namespace Booki.API
         {
         }
 
-        //public DbSet<Author> Authors { get; set; }
+        public DbSet<Author> Authors { get; set; }
     }
 }
