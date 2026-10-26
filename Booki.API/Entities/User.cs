@@ -10,7 +10,10 @@ namespace Booki.API.Entities
         [StringLength(50)]
         public required string Name { get; set; }
 
-        public string? Email { get; set; }
+        [Required]
+        [EmailAddress]
+        [StringLength(250)]
+        public required string Email { get; set; }
 
         public List<Book>? Books { get; set; }
 

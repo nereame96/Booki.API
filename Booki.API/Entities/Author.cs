@@ -1,5 +1,4 @@
-﻿using Booki.API.Enums;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Booki.API.Entities
 {
@@ -12,7 +11,5 @@ namespace Booki.API.Entities
         public required string Name { get; set; }
 
         public List<Book>? Books { get; set; }
-
-        public List<Genre>? Genre { get; set; }
     }
 }
