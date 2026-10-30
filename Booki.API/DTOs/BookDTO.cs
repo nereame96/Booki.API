@@ -16,9 +16,9 @@ namespace Booki.API.DTOs
 
         public AuthorDTO? Author { get; set; }
 
-        public int Pages { get; set; }
+        public int? Pages { get; set; }
 
-        public Genre Genre { get; set; }
+        public Genre? Genre { get; set; }
 
         public ReadingStatus ReadingStatus { get; set; } = ReadingStatus.ToRead;
 

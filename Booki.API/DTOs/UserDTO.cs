@@ -8,7 +8,7 @@ namespace Booki.API.DTOs
         public int Id { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(50, MinimumLength = 2)]
         public required string Name { get; set; }
 
         [Required]

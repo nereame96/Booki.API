@@ -54,14 +54,14 @@ namespace Booki.API.Migrations
                     b.Property<DateTime?>("FinishDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Genre")
+                    b.Property<int?>("Genre")
                         .HasColumnType("int");
 
                     b.Property<string>("Notes")
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<int>("Pages")
+                    b.Property<int?>("Pages")
                         .HasColumnType("int");
 
                     b.Property<int?>("Rating")

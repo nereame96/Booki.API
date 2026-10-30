@@ -7,7 +7,7 @@ namespace Booki.API.DTOs
         public int Id { get; set; }
 
         [Required]
-        [StringLength(150)]
+        [StringLength(150, MinimumLength = 2)]
         public required string Name { get; set; }
 
         public List<BookBriefDTO> Books { get; set; } = [];
