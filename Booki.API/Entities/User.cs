@@ -7,8 +7,12 @@ namespace Booki.API.Entities
         public int Id {  get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(150)]
         public required string Name { get; set; }
+
+        [Required]
+        [StringLength(30)]
+        public required string Username { get; set; }
 
         [Required]
         [EmailAddress]

@@ -8,16 +8,16 @@ namespace Booki.API.Entities
         public int Id { get; set; }
 
         [Required]
-        [StringLength(150)]
+        [StringLength(150, MinimumLength = 2)]
         public required string Title { get; set; }
 
         public int AuthorId { get; set; }
 
         public Author? Author { get; set; }
 
-        public int Pages { get; set; }
+        public int? Pages { get; set; }
 
-        public Genre Genre { get; set; }
+        public Genre? Genre { get; set; }
 
         public ReadingStatus ReadingStatus { get; set; } = ReadingStatus.ToRead;
 
