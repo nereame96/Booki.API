@@ -10,6 +10,7 @@ namespace Booki.API.DTOs
         [StringLength(150, MinimumLength = 2)]
         public required string Title { get; set; }
 
+        [Range(1, int.MaxValue)]
         public int AuthorId { get; set; }
 
         public int? Pages { get; set; }
