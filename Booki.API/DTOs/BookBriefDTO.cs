@@ -11,8 +11,8 @@ namespace Booki.API.DTOs
         [StringLength(150)]
         public required string Title { get; set; }
 
-        public int Pages { get; set; }
+        public int? Pages { get; set; }
 
-        public Genre Genre { get; set; }
+        public Genre? Genre { get; set; }
     }
 }

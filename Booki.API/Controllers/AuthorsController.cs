@@ -1,5 +1,5 @@
 ﻿using Booki.API.Entities;
-using Microsoft.AspNetCore.Http.HttpResults;
+using Booki.API.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,9 +17,22 @@ namespace Booki.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Author>> Get()
+        public async Task<IEnumerable<AuthorDTO>> Get()
         {
-            return await context.Authors.ToListAsync();
+            return await context.Authors
+                .Select(a => new AuthorDTO 
+                { 
+                    Id = a.Id,
+                    Name = a.Name,
+                    Books = a.Books!
+                    .Select(b => new BookBriefDTO 
+                    {
+                        Id = b.Id, 
+                        Title = b.Title, 
+                        Pages = b.Pages, 
+                        Genre = b.Genre
+                    }).ToList(),
+                }).ToListAsync();
         }
 
         [HttpGet("{id:int}")]
@@ -37,8 +50,13 @@ namespace Booki.API.Controllers
 
         [HttpPost]
 
-        public async Task<ActionResult> Post(Author author)
+        public async Task<ActionResult> Post(CreateAuthorDTO createAuthorDto)
         {
+            var author = new Author
+            {
+                Name = createAuthorDto.Name
+            };
+
             context.Add(author);
             await context.SaveChangesAsync();
             return Ok();
