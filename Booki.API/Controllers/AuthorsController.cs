@@ -36,11 +36,26 @@ namespace Booki.API.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<Author>> Get(int id)
+        public async Task<ActionResult<AuthorDTO>> Get(int id)
         {
-            var author = await context.Authors.FirstOrDefaultAsync(x => x.Id == id);
+            var author = await context.Authors
+                .Where(a => a.Id == id)
+                .Select(a => new AuthorDTO 
+                {
+                    Id = a.Id,
+                    Name = a.Name,
+                    Books = a.Books!
+                    .Select(b => new BookBriefDTO
+                    {
+                        Id = b.Id,
+                        Title = b.Title,
+                        Pages = b.Pages,
+                        Genre = b.Genre
+                    }).ToList()
+                }).FirstOrDefaultAsync();
+                
 
-            if (author == null)
+            if (author is null)
             {
                 return NotFound();
             }
