@@ -1,5 +1,4 @@
-﻿using Booki.API.Entities;
-using Booki.API.Enums;
+﻿using Booki.API.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace Booki.API.DTOs
@@ -14,7 +13,7 @@ namespace Booki.API.DTOs
 
         public int AuthorId { get; set; }
 
-        public AuthorDTO? Author { get; set; }
+        public string? AuthorName { get; set; }
 
         public int? Pages { get; set; }
 
@@ -27,11 +26,9 @@ namespace Booki.API.DTOs
 
         [StringLength(300)]
         public string? Notes { get; set; } 
-        public int UserId { get; set; }
-        public UserDTO? User { get; set; }
 
-        public DateTime StartDate { get; set; }
-        public DateTime FinishDate { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? FinishDate { get; set; }
 
         //ISBN
         //CoverImageURL
