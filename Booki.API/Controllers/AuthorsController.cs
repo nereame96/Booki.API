@@ -62,6 +62,42 @@ namespace Booki.API.Controllers
             return Ok();
         }
 
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult> Put(int id, UpdateAuthorDTO updateAuthorDTO)
+        {
+            var author = await context.Authors.FirstOrDefaultAsync(a => a.Id == id);
+
+            if (author is null)
+            {
+                return NotFound();
+            }
+
+            author.Name = updateAuthorDTO.Name;
+
+            await context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var hasBooks = await context.Books.AnyAsync(b => b.AuthorId == id);
+
+            if (hasBooks)
+            {
+                return Conflict("The author has books and cannot be deleted.");
+            }
+
+            var authorDeleted = await context.Authors.Where(a => a.Id == id).ExecuteDeleteAsync();
+
+            if (authorDeleted == 0)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
+        }
+
 
     }
 }
